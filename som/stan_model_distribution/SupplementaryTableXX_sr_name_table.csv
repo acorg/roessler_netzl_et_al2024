@@ -1,0 +1,214 @@
+Serum number,Serum name,Serum group,Dataset
+1,0410-0GY9RG00-001,Wuhan vax. (two doses),Wilks
+2,0410-0GZ6NH00-001,Wuhan vax. (two doses),Wilks
+3,0410-0H1V6A00-001,Wuhan vax. (two doses),Wilks
+4,0410-0H27PJ00-001,Wuhan vax. (two doses),Wilks
+5,1F633601202,Wuhan vax. (two doses),Wilks
+6,1F634555614,beta conv.,NHP
+7,1F638317296,beta conv.,NHP
+8,1F640547952,beta conv.,NHP
+9,218 (Ischgl 1)_WT conv._WT conv.,beta conv.,NHP
+10,220 (Ischgl 1)_WT conv._WT conv.,delta conv.,NHP
+11,224 (Ischgl 1)_WT conv._WT conv.,beta conv.,NHP
+12,260 (Ischgl 1)_WT conv._WT conv.,alpha conv.,Roessler
+13,262 (Ischgl 1)_WT conv._WT conv.,beta conv.,Roessler
+14,278 (Ischgl 1)_WT conv._WT conv.,alpha conv.,Roessler
+15,279 (Ischgl 1)_WT conv._WT conv.,beta conv.,Roessler
+16,280 (ischgl 1)_WT conv._WT conv.,beta conv.,Roessler
+17,298 (ischgl 1)_WT conv._WT conv.,alpha conv.,Roessler
+18,299 (Ischgl 1)_WT conv._WT conv.,alpha conv.,Roessler
+19,alpha conv._7132_D21_1:2_21-08,alpha conv.,Roessler
+20,alpha conv._7133_D21_4.8611111111111112E-2_21-08,alpha conv.,Roessler
+21,alpha conv._CI67_D21_1:2_21-08,alpha conv.,Roessler
+22,alpha conv._CL31_D21_1:2_21-08,alpha conv.,Roessler
+23,alpha conv._CL35_D21_4.8611111111111112E-2_21-08,beta conv.,Roessler
+24,alpha conv._CL59_D21_4.8611111111111112E-2_21-08,Wuhan vax. (two doses),Roessler
+25,B117-005,Wuhan vax. (two doses),Roessler
+26,B117-006,Wuhan vax. (two doses),Roessler
+27,B117-008,BA.1 conv.,Roessler
+28,B117-010,BA.1 conv.,Roessler
+29,B117-011,BA.1 conv.,Roessler
+30,B117-016,delta conv.,Roessler
+31,B117-017,delta conv.,Roessler
+32,B117-025,delta conv.,Roessler
+33,B117-032,delta conv.,Roessler
+34,B117-054,delta conv.,Roessler
+35,B117-059,Wuhan vax. (two doses),NHP
+36,B117-072,Wuhan vax. (two doses),NHP
+37,B117-078,Wuhan vax. (two doses),NHP
+38,B1617-100,Wuhan vax. (two doses),NHP
+39,B1617-101,Wuhan vax. (two doses),NHP
+40,B1617-105,Wuhan vax. (two doses),NHP
+41,B1617-113,BA.1 conv.,Roessler
+42,B1617-116,BA.1 conv.,Roessler
+43,B1617-133,BA.1 conv.,Roessler
+44,B1617-140,BA.1 conv.,Roessler
+45,B1617-155,BA.1 conv.,Roessler
+46,B1617-35,BA.1 conv.,Roessler
+47,B1617-40,BA.1 conv.,Roessler
+48,B1617-81,BA.1 conv.,Roessler
+49,B1617-84,BA.1 conv.,Roessler
+50,B1617-85,BA.1 conv.,Roessler
+51,BA.1 conv._7209_D28_1:10_22-01,Wuhan vax. (two doses),Wilks
+52,BA.1 conv._7216_D28_1:100_22-01,Wuhan vax. (two doses),Wilks
+53,BA.1 conv._7217_D28_1:100_22-01,Wuhan vax. (two doses),Wilks
+54,BA.1 conv._7236_D28_1:10_22-01,Wuhan vax. (two doses),Wilks
+55,BA.1 conv._7242_D28_1:10_22-01,Wuhan vax. (two doses),Wilks
+56,BA.1 conv._B05056_D10_1x10^6 PFU_21-22,Wuhan vax. (two doses),Wilks
+57,BA.1 conv._B05407_D10_1x10^6 PFU_21-22,Wuhan conv.,Wilks
+58,BA.1 conv._B08669_D10_1x10^6 PFU_21-22,Wuhan conv.,Wilks
+59,BA.1 conv._M16872_D10_1x10^6 PFU_21-22,Wuhan conv.,Wilks
+60,BA.1 conv._M16873_D10_1x10^6 PFU_21-22,Wuhan conv.,Wilks
+61,BA.1 conv._M16929_D10_1x10^6 PFU_21-22,alpha conv.,Wilks
+62,BA1-13,Wuhan conv.,Wilks
+63,beta conv._7138_D21_1:2_21-08,Wuhan conv.,Wilks
+64,beta conv._7142_D21_4.8611111111111112E-2_21-08,Wuhan conv.,Wilks
+65,beta conv._7164_D10_1:2_21-13,Wuhan conv.,Wilks
+66,beta conv._7167_D10_1:2_21-13,Wuhan conv.,Wilks
+67,beta conv._7170_D10_1:10_21-13,Wuhan conv.,Wilks
+68,beta conv._CI41_D10_1:2_21-13,Wuhan conv.,Wilks
+69,beta conv._CK65_D10_1:10_21-13,Wuhan conv.,Wilks
+70,beta conv._CO05_D21_1:2_21-08,Wuhan conv.,Wilks
+71,beta conv._CO10_D10_1:10_21-13,beta conv.,Roessler
+72,beta conv._CO72_D21_1:2_21-08,beta conv.,Roessler
+73,beta conv._CO97_D21_4.8611111111111112E-2_21-08,Wuhan vax. (two doses),Roessler
+74,beta conv._CO99_D21_4.8611111111111112E-2_21-08,Wuhan vax. (two doses),Roessler
+75,C701 - leer_beta conv._B.1.351 conv.,Wuhan vax. (two doses),Roessler
+76,C709_beta conv._B.1.351 conv.,Wuhan vax. (two doses),Roessler
+77,C715 - leer_beta conv._B.1.351 conv.,BA.1 conv.,Roessler
+78,C770_beta conv._B.1.351 conv.,Wuhan conv.,Roessler
+79,C850 - leer_beta conv._B.1.351 conv.,Wuhan conv.,Roessler
+80,C859_beta conv._B.1.351 conv.,Wuhan conv.,Roessler
+81,CSpecVir35700,Wuhan conv.,Roessler
+82,CSpecVir35731,Wuhan conv.,Roessler
+83,CSpecVir36509,Wuhan conv.,Roessler
+84,D9S09CKH-03,Wuhan conv.,Roessler
+85,delta conv._AK7_D10_1:2_21-18,Wuhan conv.,Roessler
+86,delta conv._AK8_D10_1:2_21-18,Wuhan conv.,Roessler
+87,delta conv._AK9_D10_1:2_21-18,Wuhan conv.,Roessler
+88,delta conv._AM8_D10_4.8611111111111112E-2_21-18,alpha conv.,Wilks
+89,delta conv._AO6_D10_4.8611111111111112E-2_21-18,alpha conv.,Wilks
+90,delta conv._AQ7_D10_4.8611111111111112E-2_21-18,alpha conv.,Wilks
+91,delta conv._V481_D10_?_21-21,alpha conv.,Wilks
+92,delta conv._V482_D10_?_21-21,alpha conv.,Wilks
+93,delta conv._V490_D10_?_21-21,alpha conv.,Wilks
+94,delta conv._V494_D10_?_21-21,alpha conv.,Wilks
+95,delta conv._V495_D10_?_21-21,alpha conv.,Wilks
+96,delta conv._V499_D10_?_21-21,alpha conv.,Wilks
+97,delta conv._V508_D10_?_21-21,alpha conv.,Wilks
+98,delta conv._V514_D10_?_21-21,alpha conv.,Wilks
+99,delta conv._V521_D10_?_21-21,alpha conv.,Wilks
+100,delta conv._V523_D10_?_21-21,beta conv.,Wilks
+101,F110_BNT/BNT_BNT162b2/BNT162b2,beta conv.,Wilks
+102,F120_BNT/BNT_BNT162b2/BNT162b2,alpha conv.,NHP
+103,F121_BNT/BNT_BNT162b2/BNT162b2,alpha conv.,NHP
+104,F122_BNT/BNT_BNT162b2/BNT162b2,alpha conv.,NHP
+105,F124_BNT/BNT_BNT162b2/BNT162b2,beta conv.,NHP
+106,F262_BNT/BNT_BNT162b2/BNT162b2,beta conv.,NHP
+107,F263_BNT/BNT_BNT162b2/BNT162b2,beta conv.,NHP
+108,F269_BNT/BNT_BNT162b2/BNT162b2,beta conv.,NHP
+109,F271_BNT/BNT_BNT162b2/BNT162b2,beta conv.,NHP
+110,F273_BNT/BNT_BNT162b2/BNT162b2,beta conv.,NHP
+111,F289_BNT/BNT_BNT162b2/BNT162b2,beta conv.,NHP
+112,F620_alpha/alpha+E484K conv._B.1.1.7/B.1.1.7+E484K conv.,beta conv.,Wilks
+113,F628_alpha/alpha+E484K conv._B.1.1.7/B.1.1.7+E484K conv.,beta conv.,Wilks
+114,F633_alpha/alpha+E484K conv._B.1.1.7/B.1.1.7+E484K conv.,beta conv.,Wilks
+115,F635_alpha/alpha+E484K conv._B.1.1.7/B.1.1.7+E484K conv.,delta conv.,Wilks
+116,F650_alpha/alpha+E484K conv._B.1.1.7/B.1.1.7+E484K conv.,delta conv.,Wilks
+117,F658_alpha/alpha+E484K conv._B.1.1.7/B.1.1.7+E484K conv.,delta conv.,Wilks
+118,F661_alpha/alpha+E484K conv._B.1.1.7/B.1.1.7+E484K conv.,BA.1 conv.,Wilks
+119,F662_alpha/alpha+E484K conv._B.1.1.7/B.1.1.7+E484K conv.,Wuhan vax. (two doses),Wilks
+120,F667_alpha/alpha+E484K conv._B.1.1.7/B.1.1.7+E484K conv.,Wuhan vax. (two doses),Wilks
+121,G21_delta conv._B.1.617.2 conv.,Wuhan vax. (two doses),Wilks
+122,G22_delta conv._B.1.617.2 conv.,Wuhan vax. (two doses),Wilks
+123,G23_delta conv._B.1.617.2 conv.,Wuhan vax. (two doses),Wilks
+124,G24_delta conv._B.1.617.2 conv.,delta conv.,Wilks
+125,G27_delta conv._B.1.617.2 conv.,delta conv.,NHP
+126,G291_BA.1 conv._BA.1 conv.,delta conv.,NHP
+127,G347_BA.1 conv._BA.1 conv.,delta conv.,NHP
+128,G354_BA.1 conv._BA.1 conv.,delta conv.,NHP
+129,G355_BA.1 conv._BA.1 conv.,delta conv.,NHP
+130,G356_BA.1 conv._BA.1 conv.,BA.1 conv.,NHP
+131,G359_BA.1 conv._BA.1 conv.,BA.1 conv.,NHP
+132,G360_BA.1 conv._BA.1 conv.,BA.1 conv.,NHP
+133,G362_BA.1 conv._BA.1 conv.,BA.1 conv.,NHP
+134,G363_BA.1 conv._BA.1 conv.,BA.1 conv.,NHP
+135,G366_BA.1 conv._BA.1 conv.,BA.1 conv.,NHP
+136,G369_BA.1 conv._BA.1 conv.,BA.1 conv.,NHP
+137,G371_BA.1 conv._BA.1 conv.,BA.1 conv.,NHP
+138,G381_BA.1 conv._BA.1 conv.,beta conv.,Wilks
+139,G647_BA.1 conv._BA.1 conv.,delta conv.,Wilks
+140,H9S09CKN-02,delta conv.,Wilks
+141,Ser_001,delta conv.,Wilks
+142,Ser_002,delta conv.,Wilks
+143,Ser_003,delta conv.,Wilks
+144,Ser_004,delta conv.,Wilks
+145,Ser_005,BA.1 conv.,Wilks
+146,Ser_006,Wuhan vax. (two doses),Wilks
+147,Ser_007,Wuhan vax. (two doses),Wilks
+148,Ser_008,Wuhan vax. (two doses),Wilks
+149,Ser_009,Wuhan vax. (two doses),Wilks
+150,Ser_010,Wuhan vax. (two doses),Wilks
+151,Ser_011,Wuhan vax. (two doses),Wilks
+152,Ser_014,Wuhan vax. (two doses),Wilks
+153,Ser_015,BA.1 conv.,NHP
+154,Ser_016,BA.1 conv.,NHP
+155,Ser_018,BA.1 conv.,NHP
+156,Ser_019,delta conv.,NHP
+157,Ser_020,delta conv.,NHP
+158,Ser_021,delta conv.,NHP
+159,Ser_022,delta conv.,NHP
+160,Ser_023,delta conv.,NHP
+161,Ser_024,delta conv.,NHP
+162,Ser_025,delta conv.,NHP
+163,Ser_027,delta conv.,NHP
+164,Ser_028,delta conv.,NHP
+165,Ser_029,delta conv.,NHP
+166,Ser_030,Wuhan conv.,NHP
+167,Ser_031,Wuhan conv.,NHP
+168,Ser_032,Wuhan conv.,NHP
+169,Ser_033,Wuhan conv.,NHP
+170,Ser_034,Wuhan vax. (two doses),Roessler
+171,Ser_035,beta conv.,Wilks
+172,Ser_036,Wuhan vax. (two doses),Wilks
+173,Ser_037,Wuhan vax. (two doses),Wilks
+174,Ser_038,alpha conv.,Roessler
+175,Ser_039,Wuhan vax. (two doses),Roessler
+176,Ser_040,Wuhan vax. (two doses),Roessler
+177,Ser_041,Wuhan vax. (two doses),Roessler
+178,Ser_042,Wuhan conv.,NHP
+179,Ser_043,alpha conv.,NHP
+180,Ser_044,alpha conv.,NHP
+181,Ser_045,alpha conv.,NHP
+182,Ser_046,beta conv.,Wilks
+183,Ser_047,beta conv.,Wilks
+184,Ser_049,beta conv.,Wilks
+185,Ser_050,beta conv.,Wilks
+186,Ser_052,beta conv.,Wilks
+187,Ser_054,beta conv.,Wilks
+188,Ser_055,beta conv.,Wilks
+189,Ser_056,beta conv.,Wilks
+190,Ser_110,delta conv.,Wilks
+191,Ser_111,delta conv.,Wilks
+192,Ser_112,delta conv.,Wilks
+193,Ser_114,delta conv.,Wilks
+194,Ser_115,delta conv.,Wilks
+195,SUCo-111,delta conv.,Wilks
+196,SUCo-114,delta conv.,Wilks
+197,Wuhan conv._5791_D20_?_20-05,delta conv.,Wilks
+198,Wuhan conv._7137_D20_?_20-05,delta conv.,Wilks
+199,Wuhan conv._7158_D20_?_20-05,delta conv.,Wilks
+200,Wuhan conv._7223_D20_?_20-05,delta conv.,Wilks
+201,Wuhan conv._T576_D20_?_20-05,BA.1 conv.,Wilks
+202,"Wuhan vax. (two doses)_B02954_D14_2 doses of
+Pfizer BNT162b2_21-22",BA.1 conv.,Wilks
+203,"Wuhan vax. (two doses)_B03924_D14_2 doses of
+Pfizer BNT162b2_21-22",Wuhan vax. (two doses),Wilks
+204,"Wuhan vax. (two doses)_B06440_D14_2 doses of
+Pfizer BNT162b2_21-22",Wuhan vax. (two doses),Wilks
+205,"Wuhan vax. (two doses)_M16877_D14_2 doses of
+Pfizer BNT162b2_21-22",Wuhan vax. (two doses),Wilks
+206,"Wuhan vax. (two doses)_M16879_D14_2 doses of
+Pfizer BNT162b2_21-22",Wuhan vax. (two doses),Wilks
+207,"Wuhan vax. (two doses)_M16886_D14_2 doses of
+Pfizer BNT162b2_21-22",Wuhan vax. (two doses),Wilks
