@@ -1,7 +1,7 @@
 # roessler_netzl_et_al2024
 This repository contains the code for the NHP antigenic cartography manuscript by Annika Rössler, Antonia Netzl, et. al., 2024. Please cite the original publication if any data or code from this repository is used. 
 
-The repository's DOI was created with Zenodo (https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content)
+The repository's DOI was created with Zenodo (https://doi.org/10.25495/7gxk-rd71)
 
 Raw data can be found in the `data` directory and will be added upon publication. The code for the analyses shown in the main manuscript can be found in the `code` directory. The `alignment_map.ace` in the `data/maps` directory is the human map from Rössler, Netzl, et al. Nat Commun 14, 5224 (2023) (https://doi.org/10.1038/s41467-023-41049-4)
 and the `Wilks_et_al_map_ndsubset_no_outliers_slope_adjusted.ace` is the human map from Wilks, Mühlemann, et al., Science (2023) (https://doi.org/10.1126/science.adj0070).
