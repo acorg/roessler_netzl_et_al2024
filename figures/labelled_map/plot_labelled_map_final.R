@@ -15,9 +15,13 @@ move_coords <- function(map, at = 2, by = -0.5){
 
 # move all map y-coords down by 0.5
 # read in map
-map <- move_coords(read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alpha_adj.ace"), at = 1, by = 0.5)
-map_alpha_unadj <- move_coords(read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv.ace"), at = 1, by = 0.5)
-map_alpha_unadj <- move_coords(map_alpha_unadj, at = 2, by = -1)
+# map <- move_coords(read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alpha_adj.ace"), at = 1, by = 0.5)
+# map_alpha_unadj <- move_coords(read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv.ace"), at = 1, by = 0.5)
+# map_alpha_unadj <- move_coords(map_alpha_unadj, at = 2, by = -1)
+
+
+map <- read.acmap("data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alphaJN1ba286_adjScan.ace")
+map_alpha_unadj <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv.ace")
 
 lims <- Racmacs:::mapPlotLims(map, sera = FALSE)
 lims_no_zoom <- Racmacs:::mapPlotLims(map, sera = TRUE)
@@ -27,6 +31,23 @@ ylim_zoom <- round(lims$ylim)
 
 xlim_no_zoom <- round(lims_no_zoom$xlim)
 ylim_no_zoom <- round(lims_no_zoom$ylim)
+
+write.csv(ylim_no_zoom, "./data/metadata/ylim_no_zoom.csv")
+write.csv(xlim_no_zoom, "./data/metadata/xlim_no_zoom.csv")
+
+write.csv(ylim_zoom, "./data/metadata/ylim_zoom.csv")
+write.csv(xlim_zoom, "./data/metadata/xlim_zoom.csv")
+
+ylim_zoom[2] <- ylim_zoom[2] - 1
+xlim_zoom[1] <- xlim_zoom[1] + 1
+
+
+map <- move_coords(map, at = 2, by = -0.3)
+map <- move_coords(map, at = 1, by = 0.2)
+
+map_alpha_unadj <- move_coords(map_alpha_unadj, at = 2, by = -0.3)
+map_alpha_unadj <- move_coords(map_alpha_unadj, at = 1, by = 0.2)
+
 
 # Setup plotting function
 doplot <- function(map, xlims, ylims, show_labels = TRUE) {
@@ -94,7 +115,7 @@ doplot(map, xlim_zoom, ylim_zoom, FALSE)
 dev.off()
 
 
-png("figures/labelled_map/alpha_unadj_proc_map_zoom.png",  8, height = 3.5, units = 'in', res=300, pointsize = 12)
+png("figures/labelled_map/alpha_unadj_proc_map_zoom.png", 8, height = 3, units = 'in', res=300, pointsize = 12)
 layout(matrix(c(1:2), ncol = 2, byrow = T))
 par(mar = rep(0.5, 4))
 doplot(map_alpha_unadj, xlim_zoom, ylim_zoom, FALSE)
@@ -102,3 +123,26 @@ text(xlim_zoom[1]+0.4, ylim_zoom[2]-0.4, "A", cex = 1.2)
 doplot(procrustesMap(map, map_alpha_unadj,sera = FALSE), xlim_zoom, ylim_zoom, FALSE)
 text(xlim_zoom[1]+0.4, ylim_zoom[2]-0.4, "B", cex = 1.2)
 dev.off()
+
+
+# sr_group_colors <- read.csv(file = "./data/metadata/sr_group_colors_lightXBB.csv", header = TRUE, stringsAsFactors = FALSE, sep = ";",
+#                             row.names = "SerumGroup")
+# 
+# mapColors <- read.csv(file = './data/metadata/map-colors_lightXBB.csv', row.names = 'Variable', header = TRUE)
+# mapColors[rownames(sr_group_colors), "Color"] <- sr_group_colors$Color 
+# 
+# 
+# #----------- With different XBB color
+# map <- apply_color(map, mapColors)
+
+# 
+# png(file.path(fig_dir_color, "map_zoom.png"), 5, 4, units = 'in', res=300, pointsize = 12)
+# par(mar = rep(0.5, 4))
+# doplot(map, xlim_zoom, ylim_zoom, FALSE)
+# dev.off()
+# 
+# 
+# png(file.path(fig_dir_color, "map_no_zoom.png"), 5, 4, units = 'in', res=300, pointsize = 12)
+# par(mar = rep(0.5, 4))
+# doplot(map, xlim_no_zoom, ylim_no_zoom, FALSE)
+# dev.off()

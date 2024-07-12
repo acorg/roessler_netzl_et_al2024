@@ -1,5 +1,5 @@
 padding <- 0.25
-opacity_val <- 0.9
+opacity_val <- 0.7
 # Functions to remove buttons
 addObject3js <- function(
     data3js,

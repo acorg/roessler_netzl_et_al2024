@@ -392,7 +392,8 @@ draws_long %>%
                      breaks = seq(-10, 10, 2)) +
   geom_point(data = summary_df, aes(color = Data), shape = 1, position = position_dodge(width = 0.3)) +
   xlab("Assay effect") +
-  theme_bw() -> assay_plot
+  theme_bw() + 
+  theme(axis.text.x = element_text(angle = 90)) -> assay_plot
 
 
 ##-------------------------  for organism
@@ -432,9 +433,10 @@ long_organism %>%
                      breaks = seq(-10, 10, 2)) +
   geom_point(data = summary_df, aes(color = Data), shape = 1, position = position_dodge(width = 0.3)) +
   xlab("Organism effect") +
-  theme_bw() -> organism_plot
+  theme_bw() + 
+  theme(axis.text.x = element_text(angle = 90))-> organism_plot
 
-organism_plot + assay_plot + plot_annotation(tag_levels = 'A') + plot_layout(guides = "collect") -> comb
+organism_plot + theme(legend.position = "none") + assay_plot + theme(legend.position = "none") -> comb
 
 ggsave("som/stan_model_distribution/assay_organism_distribution.png", comb, width = 8, height = 4.5, dpi = 300)
 
@@ -505,9 +507,9 @@ sr_plot <- plot_violin_plot_distribution(model_both, "sr_effects", "Serum",
                                             lower_break = -10, upper_break = 10, steps = 2) + 
   theme(legend.position = "top")
 
-sr_plot / (ag_plot + sigma_plot) + plot_annotation(tag_levels = 'A') + plot_layout(widths = c(4, 3, 1)) -> ag_sr_sigma
+sr_plot / (ag_plot + sigma_plot + comb + plot_layout(widths = c(3, 1, 2))) + plot_annotation(tag_levels = 'A') -> ag_sr_sigma
 
-ggsave("som/stan_model_distribution/ag_sigma_sr_effect_distribution.png", ag_sr_sigma, width = 20, height = 12, dpi = 300)
+ggsave("som/stan_model_distribution/ag_sigma_sr_effect_distribution_test.png", ag_sr_sigma, width = 20, height = 12, dpi = 300)
 
 sr_name_df <- data.frame("Serum number" = c(1:length(sr_effects)),
                          "Serum name" = sr_effects,

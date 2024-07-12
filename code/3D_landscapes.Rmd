@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
 ```{r}
-setwd("~/Documents/smith/labbook/roessler_et_al_2024_dev/")
+setwd("~/Documents/smith/labbook/roessler_netzl_et_al2024/")
 library(Racmacs)
 library(tidyverse)
 library(r3js)
@@ -20,10 +20,9 @@ library(htmlwidgets)
 set.seed(100)
 # set optimization nr to fit BA.4/5 position; optimization nr 56 gives upper BA.4/5
 
-map <- read.acmap(file.path("data", "maps", "map_threshold20_all_ags_singleTP_woXBBconvStudy_alpha_adj.ace"))
+map <- read.acmap(file.path("data", "maps", "map_threshold20_all_ags_singleTP_woXBBBQ11conv_alphaJN1ba286_adjScan.ace"))
 lims <- Racmacs:::mapPlotLims(map, sera = FALSE)
 
-idvl_lndscp_list <- readRDS(file.path("data", "landscape_fit", "idvl_fits_ags_all.rds"))
 lndscp_list <- readRDS(file.path("data", "landscape_fit", "biv_boosts_ags_all.rds"))
 ```
 
@@ -35,101 +34,12 @@ label.size = 0.5,
   xlim = lims$xlim, ylim = lims$ylim)
 ```
 
-## Individual and GMT landscapes
+## GMT landscapes
 
-### Wuhan vax (single dose)
-
-```{r}
-idvl_lndscp_list[["Wuhanvax.(singledose)"]]
-```
-
-
-### Wuhan vax (2 dose)
-```{r}
-idvl_lndscp_list[["Wuhanvax.(twodoses)"]]
-```
-
-### Wuhan conv.
-```{r}
-idvl_lndscp_list$Wuhanconv.
-```
-
-### Alpha conv.
+### Two dose vaccination landscapes
 
 ```{r}
-idvl_lndscp_list[["alphaconv." ]]
-```
-
-### Beta vax (single dose)
-
-```{r}
-idvl_lndscp_list[["Betavax.(singledose)"]]
-```
-
-### Betaconv.
-
-```{r}
-idvl_lndscp_list[["betaconv." ]]
-```
-
-### Gamma conv.
-
-```{r}
-idvl_lndscp_list[["gammaconv." ]]
-```
-
-### Delta conv.
-
-```{r}
-idvl_lndscp_list[["deltaconv." ]]
-```
-
-### BA.1 conv.
-
-```{r}
-idvl_lndscp_list[["BA.1conv."]]
-```
-
-### BA.2.12.1 conv.
-
-```{r}
-idvl_lndscp_list[["BA.2.12.1conv."]]
-```
-
-### BA.4 conv.
-
-```{r}
-idvl_lndscp_list[["BA.4conv."]]
-```
-
-### BA.5 conv.
-
-```{r}
-idvl_lndscp_list[["BA.5conv."]]
-```
-
-### BQ.1.1 conv.
-
-```{r}
-idvl_lndscp_list[["BQ.1.1conv."]]
-```
-
-### XBB conv.
-
-```{r}
-idvl_lndscp_list[["XBBconv."]]
-```
-
-### XBB.1.5 conv.
-
-```{r}
-idvl_lndscp_list[["XBB.1.5conv."]]
-```
-
-### XBB.1.5. vax (two doses)
-
-```{r}
-idvl_lndscp_list[["XBB.1.5vax.(twodoses)"]]
+lndscp_list$two_dose_vax
 ```
 
 

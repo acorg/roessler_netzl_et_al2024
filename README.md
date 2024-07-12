@@ -9,7 +9,11 @@ and the `Wilks_et_al_map_ndsubset_no_outliers_slope_adjusted.ace` is the human m
 
 To obtain a titer table for antigenic map construction, execute the `excel_to_titertable.R` script. To construct maps, first the `make_map_final.R` script. Antibody landscapes are fit in the `ablandscapes_fit_multi.R`. The `3D_landscapes.Rmd` creates an html script with 3D illustrations of the landscapes. The Bayesian titer comparison is done in the `model_map_organism_assay_dataset_sigma.R` script and plots are generated in the `plot_stan_model_organism_assay.R`. The STAN model is stored in the `model` directory.
 
+The code for creating maps and titerplots can be found in the `figure` directory.
+
 All SOM analyses can be found in the `som` directory, the Bayesian analysis SOM plots are generated in the scripts in the `code` directory. 
+
+Map diagnostics were performed using scripts in the `map_diagnostics` directory and as previously described in Rössler, Netzl, et al. Nat Commun 14, 5224 (2023) (https://doi.org/10.1038/s41467-023-41049-4).
 
 The `function` directory contains utility functions, the `data/metadata` directory contains metadata such as colour information.
 

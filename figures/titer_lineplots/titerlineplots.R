@@ -19,7 +19,8 @@ ag_order <- read.csv("data/metadata/ag_order.csv")$x
 
 ymax <- 11.5 #12.5 with label
 
-map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBconvStudy.ace")
+map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv.ace")
+srGroups(map) <- gsub("BA.4 conv.|BA.5 conv.", 'BA.4/5 conv.', srGroups(map))
 
 data_long <- long_map_info(map)
 
@@ -35,8 +36,8 @@ target_groups <- c('Wuhan vax. (single dose)','Beta vax. (single dose)','Wuhan v
                    'XBB.1.5 conv.')
 paste(target_groups, collapse = "', '")
 
-target_ags <- c('Wuhan', 'Alpha', 'Delta', 'Beta', 'BA.1', 'BA.2', 'BA.5', 'XBB.1.5', 'BA.2.86', 'JN.1')
-paste(unique(data_long$ag_name), collapse = "', '")
+target_ags <- c('Wuhan', 'Alpha', 'Delta', 'Beta', 'BA.1', 'BA.2', 'BA.5', 'XBB.1.5', 'BA.2.86', 'JN.1', "KP.3", "KP.2", "KZ.1.1.1")
+
 
 #------------------- Threshold <20
 
@@ -60,43 +61,46 @@ if(file.exists("data/titer_data/fc_from_homologous_threshold20_unadj.csv")){
   
 }
 
+
 target_sr_groups_a <- target_groups[1:4]
 target_sr_groups_b <- target_groups[5:length(target_groups)]
 
-titerplot20_a <- do_titer_plot_fc_label(map, 4, thresh = 20, fc_label = TRUE, adj_titers = FALSE,
-                                      sr_group_gmt_plotdata = sr_group_gmt %>%
-                                        filter(sr_group %in% target_sr_groups_a),
-                                      fc_df = fc_df %>%
-                                        filter(sr_group %in% target_sr_groups_a),
-                                      target_sr_groups = target_sr_groups_a,
-                                      ag_order = ag_order,
-                                      sr_group_colors = sr_group_colors,
-                                      ymax = ymax,
-                                      show_gmt_conf = TRUE,
-                                      show_gmt = TRUE,
-                                      facet_levels = target_sr_groups_a)
-
-titerplot20_b <- do_titer_plot_fc_label(map, 4, thresh = 20, fc_label = TRUE, adj_titers = FALSE,
+titerplot20_a <- do_titer_plot_fc_label(map, 4, thresh = 20, fc_label = FALSE, adj_titers = FALSE,
                                         sr_group_gmt_plotdata = sr_group_gmt %>%
-                                          filter(sr_group %in% target_sr_groups_b),
+                                          filter(sr_group %in% target_sr_groups_a),
                                         fc_df = fc_df %>%
-                                          filter(sr_group %in% target_sr_groups_b),
-                                        target_sr_groups = target_sr_groups_b,
+                                          filter(sr_group %in% target_sr_groups_a),
+                                        target_sr_groups = target_sr_groups_a,
                                         ag_order = ag_order,
                                         sr_group_colors = sr_group_colors,
                                         ymax = ymax,
                                         show_gmt_conf = TRUE,
                                         show_gmt = TRUE,
-                                        facet_levels = target_sr_groups_b)
+                                        facet_levels = target_sr_groups_a) + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
 
-titerplot20_b / titerplot20_a + plot_layout(heights = c(3.5, 1)) + plot_annotation(tag_levels = 'A') -> titerplot20
+targets_b_main <- target_sr_groups_b
+titerplot20_b <- do_titer_plot_fc_label(map, 3, thresh = 20, fc_label = FALSE, adj_titers = FALSE,
+                                        sr_group_gmt_plotdata = sr_group_gmt %>%
+                                          filter(sr_group %in% targets_b_main),
+                                        fc_df = fc_df %>%
+                                          filter(sr_group %in% targets_b_main),
+                                        target_sr_groups = targets_b_main,
+                                        ag_order = ag_order,
+                                        sr_group_colors = sr_group_colors,
+                                        ymax = ymax,
+                                        show_gmt_conf = TRUE,
+                                        show_gmt = TRUE,
+                                        facet_levels = targets_b_main) + 
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
 
-ggsave("som/titer_lineplots/sr_group_titerlineplot_threshold20_map_unadj.png", titerplot20, dpi = 300, width = 14, height = 10)
+(plot_spacer() + titerplot20_b + plot_spacer() + plot_layout(widths = c(0.25, 3, 0.4))) / titerplot20_a + plot_layout(heights = c(3.5, 1)) + plot_annotation(tag_levels = 'A') -> titerplot20
 
+ggsave("figures/titer_lineplots/sr_group_titerlineplot_threshold20_map_unadj_noLabel.png", titerplot20, dpi = 300, width = 12, height = 10)
 
 
 #--------------------------------------------- Load alpha adjusted data
-map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alpha_adj.ace")
+map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alphaJN1ba286_adjScan.ace")
 
 data_long <- long_map_info(remove_na_coords(map)) %>%
   mutate(titer = titer_adjusted,
@@ -125,6 +129,11 @@ sr_table_np[match(target_groups, sr_table_np$sr_group),] %>%
 
 write.csv(sr_table_np, "data/titer_data/sr_table.csv", row.names = FALSE)
 
+
+map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alphaJN1ba286_adjScan.ace")
+
+srGroups(map) <- gsub("BA.4 conv.|BA.5 conv.", 'BA.4/5 conv.', srGroups(map))
+
 data_long <- long_map_info(map) %>%
   mutate(titer = titer_adjusted,
          logtiter = logtiter_adjusted)
@@ -151,47 +160,8 @@ if(file.exists("data/titer_data/fc_from_homologous_threshold20.csv")){
 }
 
 
-titerplot20_a <- do_titer_plot_fc_label(map, 4, thresh = 20, fc_label = TRUE, adj_titers = FALSE,
-                                        sr_group_gmt_plotdata = sr_group_gmt %>%
-                                          filter(sr_group %in% target_sr_groups_a),
-                                        fc_df = fc_df %>%
-                                          filter(sr_group %in% target_sr_groups_a),
-                                        target_sr_groups = target_sr_groups_a,
-                                        ag_order = ag_order,
-                                        sr_group_colors = sr_group_colors,
-                                        ymax = ymax,
-                                        facet_levels = target_sr_groups_a)
 
-
-target_sr_groups_b <- target_sr_groups_b[!(target_sr_groups_b %in% c("BQ.1.1 conv.", "XBB conv."))]
-
-titerplot20_b <- do_titer_plot_fc_label(map, 4, thresh = 20, fc_label = TRUE, adj_titers = FALSE,
-                                        sr_group_gmt_plotdata = sr_group_gmt %>%
-                                          filter(sr_group %in% target_sr_groups_b),
-                                        fc_df = fc_df %>%
-                                          filter(sr_group %in% target_sr_groups_b),
-                                        target_sr_groups = target_sr_groups_b,
-                                        ag_order = ag_order,
-                                        sr_group_colors = sr_group_colors,
-                                        ymax = ymax,
-                                        facet_levels = target_sr_groups_b)
-
-titerplot20_b / titerplot20_a + plot_layout(heights = c(3.5, 1)) + plot_annotation(tag_levels = 'A') -> titerplot20
-
-agplot20 <- do_ag_titer_plot_fc_label(map, 5, thresh = 20, fc_label = TRUE, adj_titers = FALSE,
-                                      sr_group_gmt_plotdata = sr_group_gmt,
-                                      fc_df = fc_df,
-                                      target_sr_groups = target_groups,
-                                      ag_order = ag_order,
-                                      ymax = ymax)
-
-
-ggsave("figures/titer_lineplots/sr_group_titerlineplot_threshold20_map.png", titerplot20, dpi = 300, width = 17, height = 12)
-ggsave("som/titer_lineplots/ag_titerlineplot_threshold20_map.png", agplot20, dpi = 300, width = 14, height = 10)
-
-
-
-titerplot20_a <- do_titer_plot_fc_label(map, 4, thresh = 20, fc_label = FALSE, adj_titers = FALSE,
+titerplot20_a <- do_titer_plot_fc_label(map, 4, thresh = 20, fc_label = FALSE, adj_titers = TRUE,
                                         sr_group_gmt_plotdata = sr_group_gmt %>%
                                           filter(sr_group %in% target_sr_groups_a),
                                         fc_df = fc_df %>%
@@ -203,11 +173,9 @@ titerplot20_a <- do_titer_plot_fc_label(map, 4, thresh = 20, fc_label = FALSE, a
                                         facet_levels = target_sr_groups_a,
                                         show_gmt_conf = TRUE,
                                         show_gmt = TRUE) + 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
 
-target_sr_groups_b <- target_sr_groups_b[!(target_sr_groups_b %in% c("BQ.1.1 conv.", "XBB conv."))]
-
-titerplot20_b <- do_titer_plot_fc_label(map, 4, thresh = 20, fc_label = FALSE, adj_titers = FALSE,
+titerplot20_b <- do_titer_plot_fc_label(map, 3, thresh = 20, fc_label = FALSE, adj_titers = TRUE,
                                         sr_group_gmt_plotdata = sr_group_gmt %>%
                                           filter(sr_group %in% target_sr_groups_b),
                                         fc_df = fc_df %>%
@@ -218,7 +186,8 @@ titerplot20_b <- do_titer_plot_fc_label(map, 4, thresh = 20, fc_label = FALSE, a
                                         ymax = ymax,
                                         facet_levels = target_sr_groups_b,
                                         show_gmt_conf = TRUE)+ 
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
 
-titerplot20_b / titerplot20_a + plot_layout(heights = c(3.5, 1)) + plot_annotation(tag_levels = 'A') -> titerplot20
+(plot_spacer() + titerplot20_b + plot_spacer() + plot_layout(widths = c(0.25, 3, 0.4))) / titerplot20_a + plot_layout(heights = c(3.5, 1)) + plot_annotation(tag_levels = 'A') -> titerplot20
+
 ggsave("figures/titer_lineplots/sr_group_titerlineplot_threshold20_map_noLabel.png", titerplot20, dpi = 300, width = 12, height = 10)

@@ -25,7 +25,7 @@ alignment_map <- read.acmap("data/maps/alignment_map.ace")
 
 agNames(alignment_map) <- alignment_names[agNames(alignment_map),]
 
-keep_ags <- c('Wuhan', 'Alpha', 'Beta', 'Delta', 'BA.1', 'BA.2', 'BA.5', 'XBB.1.5', 'BA.2.86', 'JN.1')
+keep_ags <- c('Wuhan', 'Alpha', 'Beta', 'Delta', 'BA.1', 'BA.2', 'BA.5', 'XBB.1.5', 'BA.2.86', 'JN.1', "KP.3", "KP.2", "KZ.1.1.1")
 
 # load titer data
 titer_data_long <- read.csv("data/titer_data/titer_data_long.csv") %>%
@@ -40,19 +40,21 @@ make_table <- function(titer_data, titer_col){
   not_titrated_sera <- apply(tab, 2, function(x){
     vals <- unique(x == "*") == TRUE
     !(FALSE %in% vals)
-    } )
- 
+  } )
+  
   tab <- tab[, !not_titrated_sera]
   
   return(tab)
 }
+
 # ------------------------------------------ MAKE MAPS --------------------------------------
 table_thresh20 <- make_table(titer_data_long, "Titer_thresh20")
 
 map <- make_map(table_thresh20, mapColors["Color"], alignment_map, 2000, big_ags = keep_ags, options = list(ignore_disconnected = TRUE,
-                                                                                                              dim_annealing = TRUE))
+                                                                                                            dim_annealing = TRUE))
 
 save.acmap(map, "./data/maps/map_threshold20_all_ags.ace")
+
 
 # Make map with no double NHP samples
 titer_data_long %>%
@@ -73,7 +75,8 @@ data_long %>%
   pull(sr_info) -> sera_two_timepoints
 
 map_files <- list.files(map_dir, pattern = ".ace", full.names = TRUE)
-map_files <- map_files[!(grepl("alignment|Wilks|roessler|threshold1", map_files))]
+
+map_files <- map_files[(grepl("ags.ace", map_files))]
 
 for(map_f in map_files){
   
@@ -82,17 +85,17 @@ for(map_f in map_files){
   map <- removeSera(map, sera_two_timepoints)
   map <- removeSera(map, srNames(map)[grepl("23-01", srNames(map))])
   
-  map <- optimizeMap(map, 2, 1000, options = list(ignore_disconnected = TRUE,
-                                                  dim_annealing = TRUE))
-  map <- realignMap(map, alignment_map)
+  map <- optimize_and_realign_map(removeSera(map, srNames(map)[as.character(srGroups(map)) %in% c("XBB conv.", "BQ.1.1 conv.")]),
+                                  alignment_map, 1000, 2, option_list = list(ignore_disconnected = TRUE,
+                                                                             dim_annealing = TRUE))
   
-  save.acmap(map, gsub(".ace", "_singleTP_woXBBconvStudy.ace", map_f))
+  save.acmap(map, gsub(".ace", "_singleTP_woXBBBQ11conv.ace", map_f))
   
 }
 
-# optimise reactivity for JN.1 and Alpha. reduce alpha and JN.1 by 2 fold
+# optimise reactivity for Alpha. reduce alpha by 2 fold
 map_files <- list.files(map_dir, pattern = ".ace", full.names = TRUE)
-map_files <- map_files[grepl("singleTP", map_files)]
+map_files <- map_files[grepl("woXBBBQ11conv.ace", map_files)]
 
 
 for(map_f in map_files){
@@ -102,26 +105,45 @@ for(map_f in map_files){
   
   start_react <- rep(0, length(ag_names))
   start_react[ag_names == "Alpha"] <- -1
-
+  
   agReactivityAdjustments(map) <- start_react
   map <- optimizeMap(map, 2, 1000, options = list(ignore_disconnected = TRUE,
                                                   dim_annealing = TRUE))
   map <- realignMap(map, alignment_map)
   
+  save.acmap(map, gsub(".ace", "_alpha_adjM1.ace", map_f))
+  
+}
+
+# down here automated alpha adjust
+for(map_f in map_files){
+  
+  map <- read.acmap(map_f)
+  ag_names <- agNames(map)
+  
+  start_react <- rep(0, length(ag_names))
+  start_react[ag_names == "Alpha"] <- NA
+  
+  map <- optimizeAgReactivity(map, fixed_ag_reactivities = start_react, reoptimize = FALSE, options = list(ignore_disconnected = TRUE, dim_annealing = TRUE))
+  print(paste(map_f, agReactivityAdjustments(map)))
+  map <- optimize_and_realign_map(map, alignment_map, 1000, 2, option_list = list(ignore_disconnected = TRUE,
+                                                                                  dim_annealing = TRUE))
+  
+  
   save.acmap(map, gsub(".ace", "_alpha_adj.ace", map_f))
   
 }
 
-og_map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBconvStudy_alpha_adj.ace")
-# remove BQ.1.1 and XBB conv. sera
-woxbb_bq11 <- optimize_and_realign_map(removeSera(og_map, srNames(og_map)[as.character(srGroups(og_map)) %in% c("XBB conv.", "BQ.1.1 conv.")]),
-                                       og_map, 1000, 2, option_list = list(ignore_disconnected = TRUE,
-                                                                           dim_annealing = TRUE))
-save.acmap(woxbb_bq11, "data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alpha_adj.ace")
-
-
-og_map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBconvStudy.ace")
-woxbb_bq11_no_alpha_adj <- optimize_and_realign_map(removeSera(og_map, srNames(og_map)[as.character(srGroups(og_map)) %in% c("XBB conv.", "BQ.1.1 conv.")]),
-                                       og_map, 1000, 2, option_list = list(ignore_disconnected = TRUE,
-                                                                           dim_annealing = TRUE))
-save.acmap(woxbb_bq11_no_alpha_adj, "data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv.ace")
+if(!file.exists("data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alphaJN1ba286_adjScan.ace")){
+  
+  og_map <- read.acmap("data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alpha_adj.ace")
+  
+  ag_names <- agNames(og_map)
+  start_react <- agReactivityAdjustments(og_map)
+  
+  start_react[ag_names %in% c("JN.1", "BA.2.86")] <- -0.685
+  adj_map_optim <- optimizeAgReactivity(og_map, fixed_ag_reactivities = start_react, reoptimize = TRUE, options = list(ignore_disconnected = TRUE, dim_annealing = TRUE))
+  
+  save.acmap(adj_map_optim, "data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alphaJN1ba286_adjScan.ace")
+  
+}

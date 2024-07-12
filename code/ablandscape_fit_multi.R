@@ -27,7 +27,7 @@ suppressWarnings(dir.create(figure_dir, recursive = T))
 # if you want to exclude some antigens in the fit
 ags_to_exclude <- c("")
 # Read the base map
-map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alpha_adj.ace")
+map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alphaJN1ba286_adjScan.ace")
 
 sr_group_gmt <- read.csv("./data/titer_data/sr_group_gmt_threshold20.csv") %>%
   select(!X)
@@ -101,9 +101,10 @@ titerdata %>%
 
 
 # angle for html page
+# angle for html page
 angle <- list(
-  rotation = c(-1.4427, 0.0100, -0.0263), 
-  translation = c(0, 0,0), 
+  rotation = c(-1.3594,0.0060, -0.0626), #c(-1.3365, 0.0055, -0.0576),# c(-1.4592, 0.0045, -0.0144)
+  translation = c(0, 0,0), #translation = c(0.0344, 0.0459, 0.1175),
   zoom = 1.5
   # zoom = 1.1646 # higher is more zoomed out
 )
