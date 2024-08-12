@@ -285,11 +285,11 @@ plot_landscapes_from_list <- function(data3js, titertables_groups, lndscp_fits,m
      
       )
       }
-      text_x <- c(c(agCoords(map)[agNames(map) %in% ag_labelled, 1] - agSize(map)[agNames(map) %in% ag_labelled]*0.05))
-      text_x[3] <- text_x[3] + 1.1
-      text_x[1] <- text_x[1] -0.4
+      text_x <- c(agCoords(map)[agNames(map) %in% ag_labelled, 1]) - 0.3
+      text_x[4:5] <- text_x[4:5] + 0.6
+    #  text_x[1] <- text_x[1] -0.4
       text_y <- c(c(agCoords(map)[agNames(map) %in% ag_labelled, 2]))
-      
+      text_y[1:3] <- text_y[1:3]- 0.5
       # set points and coordinates of highlighted ags
 
       

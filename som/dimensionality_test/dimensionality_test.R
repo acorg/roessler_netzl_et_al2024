@@ -7,7 +7,7 @@ map_dir <- "./data/maps/"
 
 
 map_files <- list.files(map_dir, pattern = ".ace", full.names = TRUE)
-map_file <- map_files[grepl("Scan", map_files)]
+map_file <- map_files[grepl("_woXBB15conv_woJN1BA286_alpha_adj", map_files)]
 
 map <- read.acmap(map_file)
 
@@ -29,7 +29,7 @@ mapDims <- dimensionTestMap(
 df <- data.frame(dimensions=c(1, 2, 3, 4, 5),
                  rmse=c(mapDims$mean_rmse_detectable))
 
-saveRDS(df, "./map_diagnostics/dimensionality_test/dimension_test_result_threshold20_wo_dim_annealing.rds")
+saveRDS(df, "./som/dimensionality_test/dimension_test_result_threshold20_wo_dim_annealing.rds")
 
 # Run the dimensionality testing
 mapDims <- dimensionTestMap(
@@ -48,14 +48,14 @@ mapDims <- dimensionTestMap(
 df <- data.frame(dimensions=c(1, 2, 3, 4, 5),
                  rmse=c(mapDims$mean_rmse_detectable))
 
-saveRDS(df, "./map_diagnostics/dimensionality_test/dimension_test_result_threshold20.rds")
+saveRDS(df, "./som/dimensionality_test/dimension_test_result_threshold20.rds")
 
 
 
 # do the plot
-df_dim <- readRDS("./map_diagnostics/dimensionality_test/dimension_test_result_threshold20.rds")%>%
+df_dim <- readRDS("./som/dimensionality_test/dimension_test_result_threshold20.rds")%>%
   mutate("Dimensional annealing" = TRUE)
-df <- readRDS("./map_diagnostics/dimensionality_test/dimension_test_result_threshold20_wo_dim_annealing.rds") %>%
+df <- readRDS("./som/dimensionality_test/dimension_test_result_threshold20_wo_dim_annealing.rds") %>%
   mutate("Dimensional annealing" = FALSE) %>%
   rbind(.,df_dim) 
 ggplot(data=df, aes(x=dimensions, y=rmse, color = `Dimensional annealing`)) +
@@ -69,7 +69,7 @@ ggplot(data=df, aes(x=dimensions, y=rmse, color = `Dimensional annealing`)) +
         legend.position = "top") ->dp
 
 
-png("./map_diagnostics/dimensionality_test/dimension_test_threshold20_boht.png", 4, 4, units = 'in', res=300, pointsize = 12)
+png("./som/dimensionality_test/dimension_test_threshold20_boht.png", 4, 4, units = 'in', res=300, pointsize = 12)
 par(mar = rep(0.5, 4))
 dp
 dev.off()
@@ -81,7 +81,7 @@ map3D <- optimizeMap(
   number_of_optimizations = 1000,
   minimum_column_basis    = "none",
   options = list(ignore_disconnected = TRUE,
-                 dim_annealing = FALSE)
+                 dim_annealing = TRUE)
 )
 
 map3D <- applyPlotspec(map3D, map)

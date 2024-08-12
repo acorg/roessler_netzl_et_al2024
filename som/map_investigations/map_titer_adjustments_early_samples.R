@@ -63,7 +63,11 @@ data_long_sub %>%
 
 
 # adjust reactivity of >LOD for early samples accordingly
-base_map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alphaJN1ba286_adjScan.ace")
+map_dir <- file.path("data", "maps")
+map_files <- list.files(map_dir, pattern = ".ace", full.names = TRUE)
+map_files <- map_files[(grepl("_woXBB15conv_woJN1BA286_alpha_adj.ace", map_files))]
+
+base_map <- read.acmap(map_files)
 
 base_table <- titerTable(base_map)
 base_log <- logtiterTable(base_map)

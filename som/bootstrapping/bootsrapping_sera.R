@@ -6,17 +6,17 @@ map_dir <- "./data/maps/"
 
 
 map_files <- list.files(map_dir, pattern = ".ace", full.names = TRUE)
-map_file <- map_files[grepl("Scan", map_files)]
+map_file <- map_files[grepl("_woXBB15conv_woJN1BA286_alpha_adj", map_files)]
 
 neut <- read.acmap(map_file)
 
-xlim_no_zoom <- read.csv("./data/metadata/xlim_no_zoom.csv")$x + 1
-ylim_no_zoom <- read.csv("./data/metadata/ylim_no_zoom.csv")$x
+xlim_no_zoom <- read.csv("./data/metadata/xlim_no_zoom.csv")$x 
+ylim_no_zoom <- read.csv("./data/metadata/ylim_no_zoom.csv")$x + 2
 
 target_srgs <- c('Wuhan vax. (single dose)','Wuhan vax. (two doses)','Beta vax. (single dose)', 'XBB.1.5 vax. (two doses)',
                  'Wuhan conv.', 'alpha conv.','beta conv.',
-                 'gamma conv.', 'delta conv.', 'BA.1 conv.', 'BA.2.12.1 conv.', 'BA.4 conv.', 'BA.5 conv.', 
-                 'XBB.1.5 conv.')
+                 'gamma conv.', 'delta conv.', 'BA.1 conv.', 'BA.2.12.1 conv.', 'BA.4 conv.', 'BA.5 conv.') 
+               #  'XBB.1.5 conv.')
 
 labels <- data.frame(
   row.names = target_srgs,

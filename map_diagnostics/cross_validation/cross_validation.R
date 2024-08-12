@@ -8,7 +8,7 @@ set.seed(100)
 map_dir <- "./data/maps/"
 
 map_files <- list.files(map_dir, pattern = ".ace", full.names = TRUE)
-map_file <- map_files[grepl("Scan", map_files)]
+map_file <- map_files[grepl("_woXBB15conv_woJN1BA286_alpha_adj", map_files)]
 
 map <- read.acmap(map_file)
 

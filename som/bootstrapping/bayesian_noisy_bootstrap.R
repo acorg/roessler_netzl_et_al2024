@@ -7,7 +7,8 @@ set.seed(100)
 figure_dir <- "som/bootstrapping/"
 map_dir <- "./data/maps/"
 
-map_files <- c("map_threshold20_all_ags_singleTP_woXBBBQ11conv_alphaJN1ba286_adjScan.ace")
+map_files <- list.files(map_dir, pattern = ".ace", full.names = TRUE)
+map_files <- map_files[grepl("_woXBB15conv_woJN1BA286_alpha_adj", map_files)]
 
 xlim_no_zoom <- read.csv("./data/metadata/xlim_no_zoom.csv")$x + 1
 ylim_no_zoom <- read.csv("./data/metadata/ylim_no_zoom.csv")$x

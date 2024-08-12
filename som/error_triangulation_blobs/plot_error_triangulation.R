@@ -7,7 +7,7 @@ figure_dir <- "som/error_triangulation_blobs/"
 map_dir <- "./data/maps/"
 
 map_files <- list.files(map_dir, pattern = ".ace", full.names = FALSE)
-map_files <- map_files[grepl("Scan", map_files)]
+map_files <- map_files[(grepl("_woXBB15conv_woJN1BA286_alpha_adj.ace", map_files))]
 
 xlim_no_zoom <- read.csv("./data/metadata/xlim_no_zoom.csv")$x + 1
 ylim_no_zoom <- read.csv("./data/metadata/ylim_no_zoom.csv")$x

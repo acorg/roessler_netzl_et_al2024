@@ -93,27 +93,37 @@ for(map_f in map_files){
   
 }
 
-# optimise reactivity for Alpha. reduce alpha by 2 fold
+# remove all XBB.1.5 conv sera
 map_files <- list.files(map_dir, pattern = ".ace", full.names = TRUE)
 map_files <- map_files[grepl("woXBBBQ11conv.ace", map_files)]
-
-
 for(map_f in map_files){
   
   map <- read.acmap(map_f)
-  ag_names <- agNames(map)
+  map <- removeSera(map, srNames(map)[srGroups(map) == "XBB.1.5 conv."])
+  map <- optimize_and_realign_map(map, alignment_map, 1000, 2, option_list = list(ignore_disconnected = TRUE,
+                                                                             dim_annealing = TRUE))
   
-  start_react <- rep(0, length(ag_names))
-  start_react[ag_names == "Alpha"] <- -1
-  
-  agReactivityAdjustments(map) <- start_react
-  map <- optimizeMap(map, 2, 1000, options = list(ignore_disconnected = TRUE,
-                                                  dim_annealing = TRUE))
-  map <- realignMap(map, alignment_map)
-  
-  save.acmap(map, gsub(".ace", "_alpha_adjM1.ace", map_f))
+  save.acmap(map, gsub(".ace", "_woXBB15conv.ace", map_f))
   
 }
+
+# remove JN.1 and BA.2.86
+map_files <- list.files(map_dir, pattern = ".ace", full.names = TRUE)
+map_files <- map_files[grepl("woXBBBQ11conv", map_files)]
+for(map_f in map_files){
+  
+  map <- read.acmap(map_f)
+  map <- removeAntigens(map, c("JN.1", "BA.2.86"))
+  map <- optimize_and_realign_map(map, alignment_map, 1000, 2, option_list = list(ignore_disconnected = TRUE,
+                                                                             dim_annealing = TRUE))
+  
+  save.acmap(map, gsub(".ace", "_woJN1BA286.ace", map_f))
+  
+}
+
+# optimise reactivity for Alpha. reduce alpha by 2 fold
+map_files <- list.files(map_dir, pattern = ".ace", full.names = TRUE)
+map_files <- map_files[grepl("woXBBBQ11conv", map_files)]
 
 # down here automated alpha adjust
 for(map_f in map_files){
@@ -125,7 +135,7 @@ for(map_f in map_files){
   start_react[ag_names == "Alpha"] <- NA
   
   map <- optimizeAgReactivity(map, fixed_ag_reactivities = start_react, reoptimize = FALSE, options = list(ignore_disconnected = TRUE, dim_annealing = TRUE))
-  print(paste(map_f, agReactivityAdjustments(map)))
+  #print(paste(map_f, agReactivityAdjustments(map)))
   map <- optimize_and_realign_map(map, alignment_map, 1000, 2, option_list = list(ignore_disconnected = TRUE,
                                                                                   dim_annealing = TRUE))
   
@@ -134,16 +144,3 @@ for(map_f in map_files){
   
 }
 
-if(!file.exists("data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alphaJN1ba286_adjScan.ace")){
-  
-  og_map <- read.acmap("data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alpha_adj.ace")
-  
-  ag_names <- agNames(og_map)
-  start_react <- agReactivityAdjustments(og_map)
-  
-  start_react[ag_names %in% c("JN.1", "BA.2.86")] <- -0.685
-  adj_map_optim <- optimizeAgReactivity(og_map, fixed_ag_reactivities = start_react, reoptimize = TRUE, options = list(ignore_disconnected = TRUE, dim_annealing = TRUE))
-  
-  save.acmap(adj_map_optim, "data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alphaJN1ba286_adjScan.ace")
-  
-}

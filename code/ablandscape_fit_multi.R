@@ -16,7 +16,6 @@ library(patchwork)
 set.seed(100)
 
 fit_ags <- "all" # options are "all", "sub"
-sub_ags <- c('CB.1', 'BR.3', 'CH.1.1','BA.5.2.1', 'BE.1.1', 'BF.7', 'BQ.1.3', 'BQ.1.1', 'BQ.1.18', 'XBB.1', 'XBB.1.5', 'XBF')
 
 source("./functions/map_longinfo.R")
 source("./functions/sams_landscape_functions.R")
@@ -27,7 +26,7 @@ suppressWarnings(dir.create(figure_dir, recursive = T))
 # if you want to exclude some antigens in the fit
 ags_to_exclude <- c("")
 # Read the base map
-map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alphaJN1ba286_adjScan.ace")
+map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_woXBB15conv_woJN1BA286_alpha_adj.ace")
 
 sr_group_gmt <- read.csv("./data/titer_data/sr_group_gmt_threshold20.csv") %>%
   select(!X)
@@ -103,7 +102,7 @@ titerdata %>%
 # angle for html page
 # angle for html page
 angle <- list(
-  rotation = c(-1.3594,0.0060, -0.0626), #c(-1.3365, 0.0055, -0.0576),# c(-1.4592, 0.0045, -0.0144)
+  rotation = c(-1.3973,0.0060, -0.4106), #c(-1.3365, 0.0055, -0.0576),# c(-1.4592, 0.0045, -0.0144)
   translation = c(0, 0,0), #translation = c(0.0344, 0.0459, 0.1175),
   zoom = 1.5
   # zoom = 1.1646 # higher is more zoomed out
@@ -115,8 +114,8 @@ data3js <- base_plot_data3js(map, lndscp_fits, agNames(map), lims, agNames(map))
 two_dose_groups <- grep("two doses", titertables_groups$sr_group)
 
 two_dose_landscapes <- plot_landscapes_from_list(data3js, titertables_groups[two_dose_groups, ], lndscp_fits[two_dose_groups], map, gmt_data, highlighted_ags = agNames(map),
-                                                 ag_plot_names =  c("Wuhan", "BA.1", "JN.1", "HK.3"),
-                                                 ag_labelled = c("Wuhan", "BA.1", "JN.1", "HK.3"),
+                                                 ag_plot_names =  c("Delta", "BA.1", "DV.7.1",  "HK.3", "KZ.1.1.1"),
+                                                 ag_labelled = c("Delta", "BA.1","DV.7.1", "HK.3", "KZ.1.1.1"),
                                                 lndscp_colors = sr_colors,
                                                  add_ag_label = TRUE)
 
@@ -172,5 +171,3 @@ plot_single_landscape_panel(lndscp, label = "", save_name = save_name, delete_ht
 
 lndscp_list[["all"]] <- lndscp
 saveRDS(lndscp_list, paste0("data/landscape_fit/biv_boosts_ags_",fit_ags,".rds"))
-
-

@@ -15,14 +15,14 @@ map_dir <- file.path("data", "maps")
 figure_dir <- file.path("map_diagnostics", "subset_serum_maps")
 
 xlim_no_zoom <- read.csv("./data/metadata/xlim_no_zoom.csv")$x +1
-ylim_no_zoom <- read.csv("./data/metadata/ylim_no_zoom.csv")$x
+ylim_no_zoom <- read.csv("./data/metadata/ylim_no_zoom.csv")$x +1
 
 
 n_samples <- c(1:6)
 
 
 map_files <- list.files(map_dir, pattern = ".ace", full.names = FALSE)
-map_files <- map_files[grepl("Scan", map_files)]
+map_files <- map_files[grepl("_woXBB15conv_woJN1BA286_alpha_adj", map_files)]
 
 for(map_f in map_files){
   
@@ -84,25 +84,25 @@ for(map_f in map_files){
   
   
 #   for(n in n_samples){
-#     
+# 
 #     png(paste0("som/subset_serum_maps/",n,"_sera.png"), width = 8, height = 3, units = 'in', res=300, pointsize = 18)
 #     layout(matrix(c(1:10), ncol = 5, byrow = T))
 #     par(oma=c(0, 0, 0, 0), mar=c(0.1, 0, 1, 0))
-#     
+# 
 #     for(i in 1:10){
-#       
+# 
 #       p <- read.acmap(paste0("som/subset_serum_maps/n_serum_",n,"_run_", i, ".ace"))
-#       
+# 
 #       plot(procrustesMap(p, neut, sera = FALSE), xlim = xlim_no_zoom, ylim = ylim_no_zoom, fill.alpha = 0.9, plot_labels = FALSE, outline.alpha = 0.9,
 #            grid.col = "#cfcfcf", grid.margin.col="#7d7d7d", cex=0.3, plot_stress = TRUE)
-#       
-#     }
-#     
-#     dev.off()
-#     
-#   }
-#   
-#   
-#   
-# }
 # 
+#     }
+# 
+#     dev.off()
+# 
+#   }
+# 
+# 
+# 
+# }
+

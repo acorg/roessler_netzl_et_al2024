@@ -119,20 +119,21 @@ plot_residual_titers <- function(map) {
 
 target_groups <- c('Wuhan conv.', 'alpha conv.',
                   'beta conv.',
-                   'gamma conv.', 'delta conv.', 'BA.1 conv.', 'BA.2.12.1 conv.', 'BA.4 conv.', 'BA.5 conv.',
-                   'XBB.1.5 conv.',
+                   'gamma conv.', 'delta conv.', 'BA.1 conv.', 'BA.2.12.1 conv.', 'BA.4/5 conv.', #'BA.5 conv.',
+                  # 'XBB.1.5 conv.',
                    'Wuhan vax. (single dose)','Beta vax. (single dose)', 'Wuhan vax. (two doses)', 'XBB.1.5 vax. (two doses)')
 
 length(target_groups)
 map_dir <- file.path("data", "maps")
 
 map_files <- list.files(map_dir, pattern = ".ace", full.names = FALSE)
-map_files <- map_files[grepl("Scan", map_files)]
+map_files <- map_files[grepl("_woXBB15conv_woJN1BA286_alpha_adj", map_files)]
 
 for(map_n in map_files){
   
   map <- read.acmap(file.path(map_dir, map_n))
   
+  srGroups(map) <- gsub("BA.4 conv|BA.5 conv", "BA.4/5 conv", srGroups(map))
   map_vs_table_plots <- list()
   difference_hist <- list()
   titer_difference_hist <- list()
@@ -156,15 +157,15 @@ for(map_n in map_files){
   ggpubr::ggarrange(plotlist = titers_plots[9:12], labels = c("I", "J", "K", "L"), nrow = 1) -> titers_bottom
   ggpubr::ggarrange(plotlist = titer_difference_hist[9:12],labels = rep(" ", 4), nrow = 1) -> titers_res_bottom
   
-  ggpubr::ggarrange(plotlist = titers_plots[13:14], labels = c("M", "N"), nrow = 1) -> titers_final
-  ggpubr::ggarrange(plotlist = titer_difference_hist[13:14],labels = rep(" ", 4), nrow = 1) -> titers_res_final
+ # ggpubr::ggarrange(plotlist = titers_plots[13:14], labels = c("M", "N"), nrow = 1) -> titers_final
+#  ggpubr::ggarrange(plotlist = titer_difference_hist[13:14],labels = rep(" ", 4), nrow = 1) -> titers_res_final
   
   
   ggpubr::ggarrange(titers_top, titers_res_top, titers_mid, titers_res_mid, titers_bottom, titers_res_bottom, nrow = 6) -> combo
   ggsave(filename = paste0("map_diagnostics/map_vs_table_distance/", gsub(".ace", "_mapVstable.png", map_n)), plot = combo, width=10, height=12, dpi = 300)
   
-  ggpubr::ggarrange(titers_final, titers_res_final, nrow = 2) -> combo
-  ggsave(filename = paste0("map_diagnostics/map_vs_table_distance/", gsub(".ace", "_mapVstable2.png", map_n)), plot = combo, width=5, height=4, dpi = 300)
+#  ggpubr::ggarrange(titers_final, titers_res_final, nrow = 2) -> combo
+#  ggsave(filename = paste0("map_diagnostics/map_vs_table_distance/", gsub(".ace", "_mapVstable2.png", map_n)), plot = combo, width=5, height=4, dpi = 300)
   
   
 }

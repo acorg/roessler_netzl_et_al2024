@@ -44,7 +44,7 @@ sr_group_colors <- read.csv(file = "./data/metadata/sr_group_colors.csv", header
 mapColors <- read.csv(file = './data/metadata/map-colors.csv', row.names = 'Variable', header = TRUE)
 mapColors[rownames(sr_group_colors), "Color"] <- sr_group_colors$Color 
 
-target_map <- "map_threshold20_all_ags_singleTP_woXBBBQ11conv_alphaJN1ba286_adjScan.ace"
+target_map <- "map_threshold20_all_ags_singleTP_woXBBBQ11conv_woXBB15conv_woJN1BA286_alpha_adj.ace"
 full_map <-read.acmap(file.path("./data/maps", target_map))
 full_map <- change_map_colors(full_map, mapColors)
 
@@ -127,10 +127,10 @@ if(file.exists("data/maps/Wilks_et_al_subNHP.ace")){
 }
 
 xlim_no_zoom <- read.csv("./data/metadata/xlim_no_zoom.csv")$x
-xlim_no_zoom[1] <- xlim_no_zoom[1] + 2 
+#xlim_no_zoom[1] <- xlim_no_zoom[1] + 2 
 ylim_no_zoom <- read.csv("./data/metadata/ylim_no_zoom.csv")$x
-ylim_no_zoom[1] <- ylim_no_zoom[1] + 1
-ylim_no_zoom[2] <- ylim_no_zoom[2] - 1
+#ylim_no_zoom[1] <- ylim_no_zoom[1] + 1
+#ylim_no_zoom[2] <- ylim_no_zoom[2] - 1
 
 # Setup plotting function
 doplot <- function(map, xlims, ylims, show_labels = TRUE) {
@@ -189,58 +189,18 @@ doplot <- function(map, xlims, ylims, show_labels = TRUE) {
 
 
 
-#ylim_no_zoom[1] <- ylim_no_zoom[1] -1
-# 
-# 
-# png(file.path(figure_dir, "proc_map_threshold20_all_ags_singleTP_woXBBBQ11conv_alpha_adj_wSubset.png"), width = 8, height = 9, units = 'in', res=300, pointsize = 18)
-# layout(matrix(c(1:6), ncol = 2, byrow = T))
-# par(mar = rep(0.5, 4))
-# doplot(procrustesMap(alignment_map, full_map, scaling = TRUE), xlim_no_zoom, ylim_no_zoom, FALSE)
-# text(xlim_no_zoom[1]+0.4, ylim_no_zoom[2]-0.4, "A", cex = 1.2)
-# doplot(procrustesMap(move_coords(duke_map, at = 1, by = -3), full_map, scaling = TRUE), xlim_no_zoom-3, ylim_no_zoom, FALSE)
-# text(xlim_no_zoom[1]-3+0.4, ylim_no_zoom[2]-0.4, "B", cex = 1.2)
-# doplot(procrustesMap(sub_align, nhp_kimpel, scaling = TRUE), xlim_no_zoom, ylim_no_zoom, FALSE)
-# text(xlim_no_zoom[1]+0.4, ylim_no_zoom[2]-0.4, "C", cex = 1.2)
-# doplot(procrustesMap(sub_duke, nhp_duke, scaling = TRUE), xlim_no_zoom, ylim_no_zoom, FALSE)
-# text(xlim_no_zoom[1]+0.4, ylim_no_zoom[2]-0.4, "D", cex = 1.2)
-# doplot(procrustesMap(nhp_kimpel, full_map, scaling = FALSE, sera = FALSE), xlim_no_zoom, ylim_no_zoom, FALSE)
-# text(xlim_no_zoom[1]+0.4, ylim_no_zoom[2]-0.4, "E", cex = 1.2)
-# doplot(procrustesMap(nhp_duke, full_map, scaling = FALSE, sera = FALSE), xlim_no_zoom, ylim_no_zoom, FALSE)
-# text(xlim_no_zoom[1]+0.4, ylim_no_zoom[2]-0.4, "F", cex = 1.2)
-# dev.off()
-# 
-# png(file.path(figure_dir, "proc_map_threshold20_all_ags_singleTP_woXBBBQ11conv_alpha_adj.png"), width = 12, height = 5, units = 'in', res=300, pointsize = 18)
-# layout(matrix(c(1:2), ncol = 2, byrow = T))
-# par(mar = rep(0.5, 4))
-# doplot(procrustesMap(alignment_map, full_map, scaling = TRUE), xlim_no_zoom, ylim_no_zoom, FALSE)
-# text(xlim_no_zoom[1]+0.4, ylim_no_zoom[2]-0.4, "A", cex = 1.2)
-# text(xlim_no_zoom[2]-0.2, ylim_no_zoom[1]+ 0.2, "Human data set 1", cex = 0.8, adj = c(1, 0), col = "grey30")
-# doplot(procrustesMap(move_coords(duke_map, at = 1, by = -3), full_map, scaling = TRUE), xlim_no_zoom-3, ylim_no_zoom, FALSE)
-# text(xlim_no_zoom[1]-3+0.4, ylim_no_zoom[2]-0.4, "B", cex = 1.2)
-# text(xlim_no_zoom[2]-3- 0.2, ylim_no_zoom[1] + 0.2, "Human data set 2", cex = 0.8, adj = c(1, 0), col = "grey30")
-# dev.off()
+ylim_no_zoom[2] <-ylim_no_zoom[2] - 2
+xlim_no_zoom[2] <-xlim_no_zoom[2] - 2
+ylim_no_zoom[1] <-ylim_no_zoom[1] +1
 
-ylim_no_zoom[2] <-ylim_no_zoom[2] + 1
 png(file.path(figure_dir, paste0("proc_", gsub(".ace", "", target_map), "_show_only_commonAgs.png")), width = 12, height = 5, units = 'in', res=300, pointsize = 18)
 layout(matrix(c(1:2), ncol = 2, byrow = T))
 par(mar = rep(0.5, 4))
 doplot(procrustesMap(removeAntigens(alignment_map, agNames(alignment_map)[!agNames(alignment_map) %in% agNames(full_map)]), full_map, scaling = TRUE), xlim_no_zoom, ylim_no_zoom, FALSE)
 text(xlim_no_zoom[1]+0.4, ylim_no_zoom[2]-0.4, "A", cex = 1.2)
 text(xlim_no_zoom[2]-0.2, ylim_no_zoom[1]+ 0.2, "Human data set 1", cex = 0.8, adj = c(1, 0), col = "grey30")
-doplot(procrustesMap(move_coords(move_coords(removeAntigens(duke_map, agNames(duke_map)[!agNames(duke_map) %in% agNames(full_map)]), at = 1, by = -2), at =2, by = +2), full_map, scaling = TRUE), xlim_no_zoom-1, ylim_no_zoom+2, FALSE)
-text(xlim_no_zoom[1]-1+0.4, ylim_no_zoom[2]+2-0.4, "B", cex = 1.2)
-text(xlim_no_zoom[2]-1- 0.2, ylim_no_zoom[1]+2 + 0.2, "Human data set 2", cex = 0.8, adj = c(1, 0), col = "grey30")
+doplot(procrustesMap(move_coords(move_coords(removeAntigens(duke_map, agNames(duke_map)[!agNames(duke_map) %in% agNames(full_map)]), at = 1, by = -2), at =2, by = 0), full_map, scaling = TRUE), xlim_no_zoom, ylim_no_zoom, FALSE)
+text(xlim_no_zoom[1]+0.4, ylim_no_zoom[2]-0.4, "B", cex = 1.2)
+text(xlim_no_zoom[2]- 0.2, ylim_no_zoom[1] + 0.2, "Human data set 2", cex = 0.8, adj = c(1, 0), col = "grey30")
 dev.off()
 
-
-# 
-# png(file.path(figure_dir, "proc_map_threshold20_all_ags_singleTP_woXBBBQ11conv_alpha_adj_unscaled.png"), width = 12, height = 5, units = 'in', res=300, pointsize = 18)
-# layout(matrix(c(1:2), ncol = 2, byrow = T))
-# par(mar = rep(0.5, 4))
-# doplot(procrustesMap(alignment_map, full_map, scaling = FALSE), xlim_no_zoom, ylim_no_zoom, FALSE)
-# text(xlim_no_zoom[1]+0.4, ylim_no_zoom[2]-0.4, "A", cex = 1.2)
-# doplot(procrustesMap(duke_map, full_map, scaling = FALSE), xlim_no_zoom, ylim_no_zoom, FALSE)
-# text(xlim_no_zoom[1]+0.4, ylim_no_zoom[2]-0.4, "B", cex = 1.2)
-# dev.off()
-# 
-# 

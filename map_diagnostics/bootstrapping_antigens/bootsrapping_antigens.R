@@ -6,19 +6,19 @@ set.seed(100)
 map_dir <- "./data/maps/"
 
 map_files <- list.files(map_dir, pattern = ".ace", full.names = TRUE)
-map_file <- map_files[grepl("Scan", map_files)]
+map_file <- map_files[grepl("_woXBB15conv_woJN1BA286_alpha_adj", map_files)]
 
 neut <- read.acmap(map_file)
 
-xlim_no_zoom <- read.csv("./data/metadata/xlim_no_zoom.csv")$x +1
-ylim_no_zoom <- read.csv("./data/metadata/ylim_no_zoom.csv")$x 
+xlim_no_zoom <- read.csv("./data/metadata/xlim_no_zoom.csv")$x 
+ylim_no_zoom <- read.csv("./data/metadata/ylim_no_zoom.csv")$x + 2
 
 labels <- data.frame(
   row.names = agNames(neut),
   val = LETTERS[c(1:length(agNames(neut)))]
 )
 
-png("som/bootstrapping/bootstrapping-antigens.png", width = 10, height = 8, units = 'in', res=300, pointsize = 18)
+png("map_diagnostics/bootstrapping/bootstrapping-antigens.png", width = 10, height = 8, units = 'in', res=300, pointsize = 18)
 layout(matrix(c(1:nrow(labels)), ncol = 4, byrow = T))
 par(oma=c(0, 0, 0, 0), mar=c(0.1, 0, 1, 0))
 
@@ -33,7 +33,7 @@ for(ag in agNames(neut)){
   
   newMap <- realignMap(newMap, neut)
   
-  save.acmap(map = newMap, filename = paste0("./som/bootstrapping/wo_ag_",ag,".ace"))
+  save.acmap(map = newMap, filename = paste0("./map_diagnostics/bootstrapping/wo_ag_",ag,".ace"))
   srOutlineWidth(newMap) <- 1
   
   p <- procrustesMap(newMap, neut, sera = FALSE)
@@ -47,13 +47,13 @@ for(ag in agNames(neut)){
 dev.off()
 
 
-png("som/bootstrapping/bootstrapping-antigens.png", width = 12, height = 14, units = 'in', res=300, pointsize = 18)
+png("map_diagnostics/bootstrapping/bootstrapping-antigens.png", width = 12, height = 14, units = 'in', res=300, pointsize = 18)
 layout(matrix(c(1:24), ncol = 4, byrow = T))
 par(oma=c(0, 0, 0, 0), mar=c(0.1, 0, 1, 0))
 
 for(ag in agNames(neut)){
 
-  newMap <- read.acmap(filename = paste0("./som/bootstrapping/wo_ag_",ag,".ace"))
+  newMap <- read.acmap(filename = paste0("./map_diagnostics/bootstrapping/wo_ag_",ag,".ace"))
   srOutlineWidth(newMap) <- 1
 
   p <- procrustesMap(newMap, neut, sera = FALSE)
