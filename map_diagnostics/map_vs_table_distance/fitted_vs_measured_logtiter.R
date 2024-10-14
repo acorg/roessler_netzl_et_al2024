@@ -127,7 +127,7 @@ length(target_groups)
 map_dir <- file.path("data", "maps")
 
 map_files <- list.files(map_dir, pattern = ".ace", full.names = FALSE)
-map_files <- map_files[grepl("_woXBB15conv_woJN1BA286_alpha_adj", map_files)]
+map_files <- map_files[grepl("_woXBB15conv_CH11_alpha_adj", map_files)]
 
 for(map_n in map_files){
   

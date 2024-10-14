@@ -8,7 +8,7 @@ source("functions/titer_lineplot_functions.R")
 results <- readRDS("map_diagnostics/cross_validation/cross_validation_mapthreshold20_all_ags_singleTP_woXBBBQ11conv_alpha_adj.rds")
 
 # Read the map
-map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alpha_adj.ace")
+map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_woXBB15conv_CH11_alpha_adj.ace")
 
 agFillScale <- function(map) {
   fills <- agFill(map)

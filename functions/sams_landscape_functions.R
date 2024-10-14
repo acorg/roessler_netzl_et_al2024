@@ -76,8 +76,8 @@ base_plot_data3js <- function(map, lndscp_fits, highlighted_ags, lims, ag_plot_n
     labels <- c(ag_plot_names[agNames(map) %in% highlighted_ags])
   border_col <- "grey50"
   
-  z_lims <- c(0,10)
-  axis_at <- seq(z_lims[1], z_lims[2],2)
+  z_lims <- c(0,11)
+  axis_at <- seq(z_lims[1], z_lims[2],1)
   # Setup plot
   data3js <- ablandscapes:::lndscp3d_setup(
     xlim = lims$xlim,

@@ -22,7 +22,7 @@ n_samples <- c(1:6)
 
 
 map_files <- list.files(map_dir, pattern = ".ace", full.names = FALSE)
-map_files <- map_files[grepl("_woXBB15conv_woJN1BA286_alpha_adj", map_files)]
+map_files <- map_files[grepl("_woXBB15conv_CH11_alpha_adj", map_files)]
 
 for(map_f in map_files){
   

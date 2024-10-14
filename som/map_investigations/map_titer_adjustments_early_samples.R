@@ -65,7 +65,7 @@ data_long_sub %>%
 # adjust reactivity of >LOD for early samples accordingly
 map_dir <- file.path("data", "maps")
 map_files <- list.files(map_dir, pattern = ".ace", full.names = TRUE)
-map_files <- map_files[(grepl("_woXBB15conv_woJN1BA286_alpha_adj.ace", map_files))]
+map_files <- map_files[grepl("_woXBB15conv_CH11_alpha_adj", map_files)]
 
 base_map <- read.acmap(map_files)
 

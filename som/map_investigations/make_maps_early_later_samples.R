@@ -27,7 +27,7 @@ agNames(alignment_map) <- alignment_names[agNames(alignment_map),]
 
 # optimise reactivity for JN.1 and Alpha. reduce alpha and JN.1 by 2 fold
 map_files <- list.files(map_dir, pattern = ".ace", full.names = FALSE)
-map_files <- map_files[(grepl("_woXBB15conv_woJN1BA286_alpha_adj.ace", map_files))]
+map_files <- map_files[grepl("_woXBB15conv_CH11_alpha_adj", map_files)]
 
 
 # make map with newer studies

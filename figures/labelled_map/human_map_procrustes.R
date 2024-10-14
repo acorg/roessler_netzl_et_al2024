@@ -15,7 +15,7 @@ move_coords <- function(map, at = 2, by = -0.5){
 reoptimize_subset_map <- function(map, sub_ags, sub_srs){
   
   sub_align <- subsetMap(map, antigens = sub_ags, sera = sub_srs)
-  sub_align <- optimizeMap(sub_align, 2, 1000)
+  sub_align <- optimizeMap(sub_align, 2, 1000, options = list(ignore_disconnected = TRUE))
   sub_align <- realignMap(sub_align, map)
   
   return(sub_align)
@@ -44,7 +44,7 @@ sr_group_colors <- read.csv(file = "./data/metadata/sr_group_colors.csv", header
 mapColors <- read.csv(file = './data/metadata/map-colors.csv', row.names = 'Variable', header = TRUE)
 mapColors[rownames(sr_group_colors), "Color"] <- sr_group_colors$Color 
 
-target_map <- "map_threshold20_all_ags_singleTP_woXBBBQ11conv_woXBB15conv_woJN1BA286_alpha_adj.ace"
+target_map <- "map_threshold20_all_ags_singleTP_woXBBBQ11conv_woXBB15conv_CH11_alpha_adj.ace"
 full_map <-read.acmap(file.path("./data/maps", target_map))
 full_map <- change_map_colors(full_map, mapColors)
 
@@ -199,8 +199,8 @@ par(mar = rep(0.5, 4))
 doplot(procrustesMap(removeAntigens(alignment_map, agNames(alignment_map)[!agNames(alignment_map) %in% agNames(full_map)]), full_map, scaling = TRUE), xlim_no_zoom, ylim_no_zoom, FALSE)
 text(xlim_no_zoom[1]+0.4, ylim_no_zoom[2]-0.4, "A", cex = 1.2)
 text(xlim_no_zoom[2]-0.2, ylim_no_zoom[1]+ 0.2, "Human data set 1", cex = 0.8, adj = c(1, 0), col = "grey30")
-doplot(procrustesMap(move_coords(move_coords(removeAntigens(duke_map, agNames(duke_map)[!agNames(duke_map) %in% agNames(full_map)]), at = 1, by = -2), at =2, by = 0), full_map, scaling = TRUE), xlim_no_zoom, ylim_no_zoom, FALSE)
-text(xlim_no_zoom[1]+0.4, ylim_no_zoom[2]-0.4, "B", cex = 1.2)
-text(xlim_no_zoom[2]- 0.2, ylim_no_zoom[1] + 0.2, "Human data set 2", cex = 0.8, adj = c(1, 0), col = "grey30")
+doplot(procrustesMap(move_coords(removeAntigens(duke_map, agNames(duke_map)[!agNames(duke_map) %in% agNames(full_map)]), at = 1, by = -4), full_map, scaling = TRUE), xlim_no_zoom -3, ylim_no_zoom, FALSE)
+text(xlim_no_zoom[1]+0.4-3, ylim_no_zoom[2]-0.4, "B", cex = 1.2)
+text(xlim_no_zoom[2]- 0.2-3, ylim_no_zoom[1] + 0.2, "Human data set 2", cex = 0.8, adj = c(1, 0), col = "grey30")
 dev.off()
 

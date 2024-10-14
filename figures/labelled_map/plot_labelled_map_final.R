@@ -20,14 +20,14 @@ move_coords <- function(map, at = 2, by = -0.5){
 # map_alpha_unadj <- move_coords(map_alpha_unadj, at = 2, by = -1)
 
 
-map <- read.acmap("data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_woXBB15conv_woJN1BA286_alpha_adj.ace")
-map_alpha_unadj <- read.acmap("data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_woXBB15conv_woJN1BA286.ace")
+map <- read.acmap("data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_woXBB15conv_CH11_alpha_adj.ace")
+map_alpha_unadj <- read.acmap("data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_woXBB15conv_CH11.ace")
 
 lims <- Racmacs:::mapPlotLims(map, sera = FALSE)
 lims_no_zoom <- Racmacs:::mapPlotLims(map, sera = TRUE)
 
 xlim_zoom <- round(lims$xlim)
-ylim_zoom <- round(lims$ylim)
+ylim_zoom <- round(lims$ylim)-1
 
 xlim_no_zoom <- round(lims_no_zoom$xlim)
 ylim_no_zoom <- round(lims_no_zoom$ylim)
@@ -112,7 +112,7 @@ doplot(map, xlim_zoom, ylim_zoom, FALSE)
 dev.off()
 
 
-png("figures/labelled_map/alpha_unadj_proc_map_zoom.png", 5, height = 3, units = 'in', res=300, pointsize = 12)
+png("figures/labelled_map/alpha_unadj_proc_map_zoom.png", 7.5, height = 4, units = 'in', res=300, pointsize = 12)
 layout(matrix(c(1:2), ncol = 2, byrow = T))
 par(mar = rep(0.5, 4))
 doplot(map_alpha_unadj, xlim_zoom, ylim_zoom, FALSE)
@@ -122,24 +122,3 @@ text(xlim_zoom[1]+0.4, ylim_zoom[2]-0.4, "B", cex = 1.2)
 dev.off()
 
 
-# sr_group_colors <- read.csv(file = "./data/metadata/sr_group_colors_lightXBB.csv", header = TRUE, stringsAsFactors = FALSE, sep = ";",
-#                             row.names = "SerumGroup")
-# 
-# mapColors <- read.csv(file = './data/metadata/map-colors_lightXBB.csv', row.names = 'Variable', header = TRUE)
-# mapColors[rownames(sr_group_colors), "Color"] <- sr_group_colors$Color 
-# 
-# 
-# #----------- With different XBB color
-# map <- apply_color(map, mapColors)
-
-# 
-# png(file.path(fig_dir_color, "map_zoom.png"), 5, 4, units = 'in', res=300, pointsize = 12)
-# par(mar = rep(0.5, 4))
-# doplot(map, xlim_zoom, ylim_zoom, FALSE)
-# dev.off()
-# 
-# 
-# png(file.path(fig_dir_color, "map_no_zoom.png"), 5, 4, units = 'in', res=300, pointsize = 12)
-# par(mar = rep(0.5, 4))
-# doplot(map, xlim_no_zoom, ylim_no_zoom, FALSE)
-# dev.off()

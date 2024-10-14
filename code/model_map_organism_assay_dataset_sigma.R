@@ -254,7 +254,7 @@ model_map <- function(map,
   
 }
 
-nhp_map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_alpha_adj.ace")
+nhp_map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_woXBB15conv_CH11_alpha_adj.ace")
 roessler_map <- read.acmap("./data/maps/roessler_et_al2023_subNHP.ace")
 duke_map <- read.acmap("./data/maps/Wilks_et_al_subNHP.ace")
 

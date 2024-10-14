@@ -13,7 +13,7 @@ set_threshold <- function(tab, thresh = 20) {
 
 
 # =============================== Omicron I sheet, published in NEJM
-tab <- readxl::read_excel("./data/titer_data/06142024_Update 5_with new variants.xlsx", sheet = 1)
+tab <- readxl::read_excel("./data/titer_data/09302024_Update 6_BA.2.86 and JN.1 corrected.xlsx", sheet = 1)
 colnames(tab) <- tab[1,]
 tab <- tab[!is.na(tab$`NHP ID`),]
 tab <- tab[2:nrow(tab),]
@@ -22,7 +22,7 @@ tab %>%
   fill(`Study#`, `Virus strain`, `number of samples`, `Virus dose/note`, `Time point post challenge`) -> tab
 
 # make second sheet with vax cohort
-vax <- readxl::read_excel("./data/titer_data/06142024_Update 5_with new variants.xlsx", sheet = 2)
+vax <- readxl::read_excel("./data/titer_data/09302024_Update 6_BA.2.86 and JN.1 corrected.xlsx", sheet = 2)
 colnames(vax) <- vax[1,]
 vax <- vax[!is.na(vax$`NHP ID`),]
 vax <- vax[2:nrow(vax),]

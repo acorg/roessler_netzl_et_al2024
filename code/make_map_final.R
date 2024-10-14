@@ -51,7 +51,7 @@ make_table <- function(titer_data, titer_col){
 table_thresh20 <- make_table(titer_data_long, "Titer_thresh20")
 
 map <- make_map(table_thresh20, mapColors["Color"], alignment_map, 2000, big_ags = keep_ags, options = list(ignore_disconnected = TRUE,
-                                                                                                            dim_annealing = TRUE))
+                                                                                                            dim_annealing = FALSE))
 
 save.acmap(map, "./data/maps/map_threshold20_all_ags.ace")
 
@@ -113,11 +113,11 @@ map_files <- map_files[grepl("woXBBBQ11conv", map_files)]
 for(map_f in map_files){
   
   map <- read.acmap(map_f)
-  map <- removeAntigens(map, c("JN.1", "BA.2.86"))
+  map <- removeAntigens(map, c("CH.1.1"))
   map <- optimize_and_realign_map(map, alignment_map, 1000, 2, option_list = list(ignore_disconnected = TRUE,
                                                                              dim_annealing = TRUE))
   
-  save.acmap(map, gsub(".ace", "_woJN1BA286.ace", map_f))
+  save.acmap(map, gsub(".ace", "_CH11.ace", map_f))
   
 }
 

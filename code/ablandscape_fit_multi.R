@@ -26,7 +26,7 @@ suppressWarnings(dir.create(figure_dir, recursive = T))
 # if you want to exclude some antigens in the fit
 ags_to_exclude <- c("")
 # Read the base map
-map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_woXBB15conv_woJN1BA286_alpha_adj.ace")
+map <- read.acmap("./data/maps/map_threshold20_all_ags_singleTP_woXBBBQ11conv_woXBB15conv_CH11_alpha_adj.ace")
 
 sr_group_gmt <- read.csv("./data/titer_data/sr_group_gmt_threshold20.csv") %>%
   select(!X)

@@ -1,7 +1,7 @@
 ---
 title: "3D Landscapes"
 author: "Antonia Netzl"
-date: "2024-07-31"
+date: "2024-10-11"
 output: html_document
 ---
 
@@ -20,7 +20,7 @@ library(htmlwidgets)
 set.seed(100)
 # set optimization nr to fit BA.4/5 position; optimization nr 56 gives upper BA.4/5
 
-map <- read.acmap(file.path("data", "maps", "map_threshold20_all_ags_singleTP_woXBBBQ11conv_woXBB15conv_woJN1BA286_alpha_adj.ace"))
+map <- read.acmap(file.path("data", "maps", "map_threshold20_all_ags_singleTP_woXBBBQ11conv_woXBB15conv_CH11_alpha_adj.ace"))
 lims <- Racmacs:::mapPlotLims(map, sera = FALSE)
 
 lndscp_list <- readRDS(file.path("data", "landscape_fit", "biv_boosts_ags_all.rds"))
@@ -28,9 +28,9 @@ lndscp_list <- readRDS(file.path("data", "landscape_fit", "biv_boosts_ags_all.rd
 
 # Base map
 
-```{r, out.width='75%'}
+```{r, out.width='90%'}
 plot(map, plot_labels = "antigens", label.offset = c(1.5),
-label.size = 0.5,
+label.size = 0.25,
   xlim = lims$xlim, ylim = lims$ylim)
 ```
 
