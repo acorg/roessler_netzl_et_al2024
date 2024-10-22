@@ -268,6 +268,7 @@ common_srs <- intersect(intersect(srGroups(nhp_map), srGroups(roessler_map)), in
 merged_map <- mergeMaps(list(nhp_map, roessler_map, duke_map))
 merged_map <- subsetMap(merged_map, antigens = common_ags, sera = srNames(merged_map)[as.character(srGroups(merged_map)) %in% common_srs])
 
+merged_map <- removeSera(merged_map, "BA.1 conv._7202_D28_1:100_22-01")
 # Do Model
 model_both <- model_map(merged_map, ag_mean_prior_mean = 4, sigma_prior_beta = 1.5, sigma_prior_alpha = 3, sigma_prior_sr_effect = 4, sigma_prior_dataset_bias = 1e-3,
                         sigma_prior_organism_magnitude = 4, sigma_prior_assay_effect = 4) 

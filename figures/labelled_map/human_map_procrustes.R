@@ -48,6 +48,7 @@ target_map <- "map_threshold20_all_ags_singleTP_woXBBBQ11conv_woXBB15conv_CH11_a
 full_map <-read.acmap(file.path("./data/maps", target_map))
 full_map <- change_map_colors(full_map, mapColors)
 
+stop()
 alignment_names <- read.csv("./data/metadata/map-names.csv", row.names = "Antigen")
 alignment_map <- read.acmap("./data/maps/alignment_map.ace")
 
