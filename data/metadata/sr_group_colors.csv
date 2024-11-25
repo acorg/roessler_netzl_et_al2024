@@ -1,0 +1,40 @@
+SerumGroup;Color
+Wuhan conv.;#393B79
+D614G conv.;#393b79
+alpha conv.;#0056aa
+beta conv.;#80c0ff
+gamma conv.;#abbcfa
+delta conv.;#007df6
+BA.1 conv.;#95004b
+BA.2 conv.;#5B004C
+BA.2.12.1 conv.;#663399
+BA.4 conv.;#e31d5e
+BA.5 conv.;#e31d5e
+BA.4/5 conv.;#e31d5e
+BQ.1.1 conv.;#9bcbd5
+XBB.1.5 conv.;#ff6500
+XBB conv.;#ffa000
+D7;grey80
+D9;grey70
+D10;grey60
+D14;grey40
+D15;grey40
+D16;grey40
+D20;grey20
+D21;grey20
+D28;grey1
+4.8611111111111112E-2;grey80
+1:10;grey40
+1:100;grey20
+? Mehul;grey60
+? Diamond;grey20
+BEI 1:5 (IN+IT);grey80
+BEI 1:5 (IN);grey60
+Emory 1:10 (IN);grey40
+XBB.1.5 conv._1:5 (IN);grey20
+Wuhan vax. (two doses);#00bfff
+XBB.1.5 vax. (two doses);#ff6500
+Wuhan vax. (single dose);#6c6c93
+Beta vax. (single dose);#a2c0dd
+
+

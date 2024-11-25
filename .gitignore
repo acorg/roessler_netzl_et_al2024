@@ -48,6 +48,3 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
-# Ignore data until manuscript is accepted
-data/
-*.ace

@@ -1,0 +1,43 @@
+"sr_group","ag_name","Human data set 1","Human data set 2","NHP"
+"BA.1","Alpha",14,1,11
+"BA.1","BA.1",14,4,11
+"BA.1","BA.2",14,4,11
+"BA.1","BA.5",14,4,11
+"BA.1","Beta",14,4,11
+"BA.1","Delta",14,1,11
+"BA.1","Wuhan",14,4,11
+"Wuhan","Alpha",10,12,5
+"Wuhan","BA.1",10,13,5
+"Wuhan","BA.2",10,13,5
+"Wuhan","BA.5",10,0,5
+"Wuhan","Beta",10,13,5
+"Wuhan","Delta",10,12,5
+"Wuhan","Wuhan",10,13,5
+"Wuhan (two doses)","Alpha",11,26,6
+"Wuhan (two doses)","BA.1",11,13,6
+"Wuhan (two doses)","BA.2",11,0,6
+"Wuhan (two doses)","BA.5",11,4,6
+"Wuhan (two doses)","Beta",11,28,6
+"Wuhan (two doses)","Delta",11,26,6
+"Wuhan (two doses)","Wuhan",11,30,6
+"Alpha","Alpha",9,13,6
+"Alpha","BA.1",9,13,6
+"Alpha","BA.2",9,13,6
+"Alpha","BA.5",9,0,6
+"Alpha","Beta",9,13,6
+"Alpha","Delta",9,13,6
+"Alpha","Wuhan",9,13,6
+"Beta","Alpha",6,15,12
+"Beta","BA.1",6,15,12
+"Beta","BA.2",6,0,12
+"Beta","BA.5",6,0,12
+"Beta","Beta",6,15,12
+"Beta","Delta",6,15,12
+"Beta","Wuhan",6,15,12
+"Delta","Alpha",5,15,16
+"Delta","BA.1",5,21,16
+"Delta","BA.2",5,11,16
+"Delta","BA.5",5,6,16
+"Delta","Beta",5,21,16
+"Delta","Delta",5,21,16
+"Delta","Wuhan",5,21,16
